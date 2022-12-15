@@ -1,25 +1,44 @@
-class Pessoa():
-    def __init__(self):
-        
-    @classmethod
-    def cliente(cls, nome, id_cliente):
-        id_cliente = id_cliente
-        
-    @classmethod
-    def funcionario(cls, id_funcionario):
-        id_funcionario = id_funcionario
-        
-class Categoria():
+from datetime import datetime
+
+class Categoria:
     def __init__(self, categoria):
         self.categoria = categoria
 
-class Produto():
-    def __init__(self, nome, preco, categoria):
+class Produto:
+    def __init__(self, nome, preco, categoria: Categoria):
         self.nome = nome
         self.preco = preco
         self.categoria = categoria
 
-class Estoque():
+class Estoque:
     def __init__(self, produto: Produto, quantidade):
         self.produto = produto
         self.quantidade = quantidade
+
+class Venda:
+    def __init__(self, itensVendido: Produto, quantidadeVendida, vendedor, comprador, data = datetime.now):
+        self.itensVendidos = itensVendido
+        self.quantidadeVendida = quantidadeVendida
+        self.vendedor = vendedor
+        self.comprador = comprador
+        self.data = data
+
+class Fornecedor:
+    def __init__(self, nome, cnpj, telefone, categoria):
+        self.nome = nome
+        self.cnpj = cnpj
+        self.telefone = telefone
+        self.categoria = categoria
+
+class Pessoa():
+    def __init__(self, nome, telefone, cpf, email, endereco):
+        self.nome = nome
+        self.telefone = telefone
+        self.cpf = cpf
+        self.email = email
+        self.endereco = endereco      
+        
+class Funcionario(Pessoa):
+    def __init__ (self, clt, nome, telefone, cpf, email, endereco):
+        self.clt = clt
+        super(Funcionario,self).__init__(nome, telefone, cpf, email, endereco)
