@@ -1,4 +1,4 @@
-from models import Pessoa, Categoria, Produto, Estoque
+from models import *
 
 class ControllerPessoa:
     pass
