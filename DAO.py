@@ -16,7 +16,7 @@ class DaoCategoria:
 
         cat = []
         for i in cls.categoria:
-            cat.apeend(Categoria(i))
+            cat.append(Categoria(i))
         return cat
 
 class DaoVenda:
