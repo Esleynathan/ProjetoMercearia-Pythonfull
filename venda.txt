@@ -1,1 +1,1 @@
-Banana|5|Frutas|Ésley|15/12/2022|3|Camila
+pera|5|Legumes|vendedor|comprador|2|17/12/2022

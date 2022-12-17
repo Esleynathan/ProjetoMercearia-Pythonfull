@@ -23,10 +23,11 @@ class DaoVenda:
     @classmethod
     def salvar(cls, venda: Venda):
         with open('venda.txt', 'a') as arq:
-            arq.writelines(venda.itensVendido.nome + "|" + venda.itensVendido.preco + "|" + venda.itensVendido.categoria + "|" + 
-                            str(venda.quantidadeVendida) + "|" + venda.data + "|" + venda.comprador + "|" + venda.vendedor)
+            arq.writelines(venda.itensVendido.nome + "|" + venda.itensVendido.preco + "|" +
+                        venda.itensVendido.categoria + "|" + venda.vendedor + "|" +
+                        venda.comprador + "|" + str(venda.quantidadeVendida) + "|" + venda.data)
             arq.writelines('\n')
-    
+
     @classmethod
     def ler(cls):
         with open('venda.txt', 'r') as arq:
@@ -39,6 +40,11 @@ class DaoVenda:
         for i in cls.venda:
             vend.append(Venda(Produtos(i[0], i[1], i[2]), i[3], i[4], i[5], i[6]))
         return vend
+
+#x = Produtos('pera', '5', 'Legumes')
+#y = Venda(x, 'vendedor', 'comprador', '2')
+#DaoVenda.salvar(y)
+#DaoVenda.ler()
 
 class DaoEstoque:
     @classmethod
@@ -59,7 +65,7 @@ class DaoEstoque:
         est = []
         if len(cls.estoque) > 0:
             for i in cls.estoque:
-                est.append(Estoque(Produtos(i[0], i[1], i[2]), i[3]))                
+                est.append(Estoque(Produtos(i[0], i[1], i[2]), int(i[3])))                
 
         return est
 

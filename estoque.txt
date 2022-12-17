@@ -1,1 +1,1 @@
-maca|10|Verduras|10
+maca|10|Verduras|3
