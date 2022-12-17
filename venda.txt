@@ -1,5 +1,5 @@
-banana|5|Verduras|joao|maria|1|17/12/2022
-maca|5|Verduras|esley|camila|10|17/12/2022
+banana|5|Verduras|joao|maria|1|01/12/2022
+maca|5|Verduras|esley|camila|10|02/12/2022
 abacaxi|5|Verduras|erika|adailza|3|17/12/2022
-abacaxi|5|Verduras|erika|adailza|2|17/12/2022
-abacaxi|5|Verduras|erika|adailza|1|17/12/2022
+abacaxi|5|Verduras|erika|adailza|2|15/12/2022
+abacaxi|5|Verduras|erika|adailza|1|10/12/2022
