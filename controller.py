@@ -98,6 +98,34 @@ class ControllerEstoque:
                                 i.produto.categoria  + "|" + str(i.quantidade))
                 arq.writelines('\n')
 
+    def alterarProduto(self, nomeAlterar, novoNome, novoPreco, novaCategoria, novaQuantidade):
+        x = DaoEstoque.ler()
+        y = DaoCategoria.ler()
+        
+        h = list(filter(lambda x: x.categoria == novaCategoria, y))
+        if len(h) > 0:
+            est = list(filter(lambda x: x.produto.nome == nomeAlterar, x))
+            if len(est) > 0:
+                est = list(filter(lambda x: x.produto.nome == novoNome, x))
+                if len(est) == 0:
+                    x = list(map(lambda x: Estoque(Produtos(novoNome, novoPreco, novaCategoria), novaQuantidade) if (x.produto.nome == nomeAlterar) else(x), x))
+                    print('O produto foi alterado com sucesso.')
+                else:
+                    print('O produto já cadastrado.')                    
+            else:
+                print("O produto que deseja alterar não existe.")
+            
+            with open ('estoque.txt', 'w') as arq:
+                for i in x:
+                    arq.writelines(i.produto.nome + "|" + i.produto.preco + "|" + 
+                                    i.produto.categoria  + "|" + str(i.quantidade))
+                    arq.writelines('\n')
+        else:
+            print("A categoria informada não existe")
+
+a = ControllerEstoque()
+a.alterarProduto('banana','maca','10','Verduras','10')        
+
 class ControllerPessoa:
     pass
 
