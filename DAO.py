@@ -2,7 +2,7 @@ from models import *
 
 class DaoCategoria:
     @classmethod
-    def salvar(cls, categoria: Categoria):
+    def salvar(cls, categoria):
         with open('categoria.txt', 'a') as arq:
             arq.writelines(categoria)
             arq.writelines('\n')
@@ -18,6 +18,9 @@ class DaoCategoria:
         for i in cls.categoria:
             cat.append(Categoria(i))
         return cat
+# Testando Salvar 1 Categoria 
+#DaoCategoria.salvar("Graos")
+#DaoCategoria.ler()
 
 class DaoVenda:
     @classmethod
@@ -40,18 +43,18 @@ class DaoVenda:
         for i in cls.venda:
             vend.append(Venda(Produtos(i[0], i[1], i[2]), i[3], i[4], i[5], i[6]))
         return vend
-
-#x = Produtos('pera', '5', 'Legumes')
-#y = Venda(x, 'vendedor', 'comprador', '2')
-#DaoVenda.salvar(y)
-#DaoVenda.ler()
+        
+# x = Produtos('pera', '5', 'Legumes')
+# y = Venda(x, 'vendedor', 'comprador', '2')
+# DaoVenda.salvar(y)
+# DaoVenda.ler()
 
 class DaoEstoque:
     @classmethod
     def salvar(cls, produto: Produtos, quantidade):
         with open('estoque.txt', 'a') as arq:
-            arq.writelines(produto.nome + "|" + produto.preco + "|" + 
-                        produto.categoria  + "|" + str(quantidade))
+            arq.writelines(produto.nome +"|"+ produto.preco +"|"+ 
+                        produto.categoria +"|"+ str(quantidade))
             arq.writelines('\n')
 
     @classmethod
@@ -65,9 +68,13 @@ class DaoEstoque:
         est = []
         if len(cls.estoque) > 0:
             for i in cls.estoque:
-                est.append(Estoque(Produtos(i[0], i[1], i[2]), int(i[3])))                
-
+                est.append(Estoque(Produtos(i[0], i[1], i[2]), int(i[3])))             
         return est
+
+# x = Produtos('pera1', '10', 'Legumes')
+# y = Estoque(x,'2')
+# DaoEstoque.salvar(y)
+# DaoEstoque.ler()
 
 class DaoFornecedor:
     @classmethod
