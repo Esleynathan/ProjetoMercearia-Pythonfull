@@ -51,7 +51,7 @@ class DaoEstoque:
     @classmethod
     def ler (cls):
         with open('estoque.txt', 'r') as arq:
-            cls.estoque = arq.readline()
+            cls.estoque = arq.readlines()
 
         cls.estoque = list(map(lambda x: x.replace ('\n',''), cls.estoque))
         cls.estoque = list(map(lambda x: x.split ('|'), cls.estoque))
@@ -59,7 +59,8 @@ class DaoEstoque:
         est = []
         if len(cls.estoque) > 0:
             for i in cls.estoque:
-                est.append(Estoque(Produtos(i[0], i[1], i[2], i[3])))
+                est.append(Estoque(Produtos(i[0], i[1], i[2]), i[3]))                
+
         return est
 
 class DaoFornecedor:
