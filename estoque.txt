@@ -1,3 +1,6 @@
-banana|5|Verduras|16
+bananaAlterar|100|novaFrutas|30
 maca|5|Verduras|10
 abacaxi|5|Verduras|14
+pera1|10|Legumes|2
+novoEstoque|10|Legumes|9
+novoEstoque|10|Legumes|10

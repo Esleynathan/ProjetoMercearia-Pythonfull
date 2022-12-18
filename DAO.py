@@ -18,7 +18,6 @@ class DaoCategoria:
         for i in cls.categoria:
             cat.append(Categoria(i))
         return cat
-# Testando Salvar 1 Categoria 
 #DaoCategoria.salvar("Graos")
 #DaoCategoria.ler()
 
@@ -43,7 +42,6 @@ class DaoVenda:
         for i in cls.venda:
             vend.append(Venda(Produtos(i[0], i[1], i[2]), i[3], i[4], i[5], i[6]))
         return vend
-        
 # x = Produtos('pera', '5', 'Legumes')
 # y = Venda(x, 'vendedor', 'comprador', '2')
 # DaoVenda.salvar(y)
@@ -70,26 +68,25 @@ class DaoEstoque:
             for i in cls.estoque:
                 est.append(Estoque(Produtos(i[0], i[1], i[2]), int(i[3])))             
         return est
-
-# x = Produtos('pera1', '10', 'Legumes')
-# y = Estoque(x,'2')
-# DaoEstoque.salvar(y)
+# x = Produtos('novoEstoque', '10', 'Legumes')
+# DaoEstoque.salvar(x, 10)
 # DaoEstoque.ler()
-
+## daqui pra cima esta ok ##
 class DaoFornecedor:
     @classmethod
     def salvar(cls, fornecedor: Fornecedor):
-        with open ('forncedores.txt', 'a') as arq:
+        with open ('fornecedores.txt', 'a') as arq:
             arq.writelines(fornecedor.nome + "|" + fornecedor.cnpj + "|" + fornecedor.telefone + "|" + fornecedor.categoria)
             arq.writelines('\n')
     
     @classmethod
-    def ler (cls):
+    def ler(cls):
         with open ('fornecedores.txt', 'r') as arq:
-            cls.fornecedores = arq.readline()
+            cls.fornecedores = arq.readlines()
 
         cls.fornecedores = list(map(lambda x: x.replace ('\n',''), cls.fornecedores))
         cls.fornecedores = list(map(lambda x: x.split ('|'), cls.fornecedores))
+
         forn = []
         for i in cls.fornecedores:
             forn.append(Fornecedor(i[0], i[1], i[2], i[3]))
@@ -116,11 +113,11 @@ class DaoPessoa:
             clientes.append(Pessoa(i[0], i[1], i[2], i[3], i[4]))
         return clientes
 
-class DaoFuncionarios:
+class DaoFuncionario:
     @classmethod
     def salvar(cls, funcionarios: Funcionario):
         with open ('funcionarios.txt', 'a') as arq:
-            arq.writelines(funcionarios.cls + "|" + funcionarios.nome + "|" + funcionarios.telefone + "|" +
+            arq.writelines(funcionarios.clt + "|" + funcionarios.nome + "|" + funcionarios.telefone + "|" +
                         funcionarios.cpf + "|" + funcionarios.email + "|" + funcionarios.endereco)
             arq.writelines('\n')
     

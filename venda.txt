@@ -3,3 +3,4 @@ maca|5|Verduras|esley|camila|10|02/12/2022
 abacaxi|5|Verduras|erika|adailza|3|17/12/2022
 abacaxi|5|Verduras|erika|adailza|2|15/12/2022
 abacaxi|5|Verduras|erika|adailza|1|10/12/2022
+novoEstoque|10|Legumes|erika|adailza|1|18/12/2022

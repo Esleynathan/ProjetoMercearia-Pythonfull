@@ -1,0 +1,5 @@
+Cliente01|33322211101|21999990001|email01@email.com|endereco01
+Cliente02|33322211102|21999990002|email02@email.com|endereco02
+Cliente02|33322211102|21999990002|email02@email.com|endereco02
+Cliente02|33322211102|21999990002|email02@email.com|endereco02
+Cliente02|33322211102|21999990002|email02@email.com|endereco02
