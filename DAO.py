@@ -71,7 +71,7 @@ class DaoEstoque:
 # x = Produtos('novoEstoque', '10', 'Legumes')
 # DaoEstoque.salvar(x, 10)
 # DaoEstoque.ler()
-## daqui pra cima esta ok ##
+
 class DaoFornecedor:
     @classmethod
     def salvar(cls, fornecedor: Fornecedor):
@@ -115,21 +115,21 @@ class DaoPessoa:
 
 class DaoFuncionario:
     @classmethod
-    def salvar(cls, funcionarios: Funcionario):
+    def salvar(cls, funcionario: Funcionario):
         with open ('funcionarios.txt', 'a') as arq:
-            arq.writelines(funcionarios.clt + "|" + funcionarios.nome + "|" + funcionarios.telefone + "|" +
-                        funcionarios.cpf + "|" + funcionarios.email + "|" + funcionarios.endereco)
+            arq.writelines(funcionario.clt + "|" + funcionario.nome + "|" + funcionario.telefone + "|" +
+                        funcionario.cpf + "|" + funcionario.email + "|" + funcionario.endereco)
             arq.writelines('\n')
     
     @classmethod
     def ler (cls):
         with open ('funcionarios.txt', 'r') as arq:
-            cls.funcionarios = arq.readline()
+            cls.funcionario = arq.readlines()
         
-        cls.funcionarios = list(map(lambda x: x.replace ('\n', ''), cls.funcionarios))
-        cls.funcionarios = list(map(lambda x: x.split ('|'), cls.funcionarios))
+        cls.funcionario = list(map(lambda x: x.replace ('\n', ''), cls.funcionario))
+        cls.funcionario = list(map(lambda x: x.split ('|'), cls.funcionario))
 
         funcionario = []
-        for i in cls.funcionarios:
+        for i in cls.funcionario:
             funcionario.append(Funcionario(i[0], i[1] ,i[2] ,i[3] ,i[4], i[5]))
         return funcionario

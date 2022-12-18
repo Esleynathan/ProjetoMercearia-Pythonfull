@@ -239,7 +239,7 @@ class ControllerVenda:
 #a.relatorioVendas()
 #a.mostrarVenda("07/12/2022", "20/12/2022")
 
-## DAQUI PRA CIMA ESTA OK ##
+
 
 class ControllerFornecedor:
     def cadastarFornecedor(self, nome, cnpj, telefone, categoria):
@@ -265,7 +265,7 @@ class ControllerFornecedor:
         if len(est) > 0:
             est = list(filter(lambda x: x.cnpj == novoCnpj, x))
             if len (est) == 0:
-                x = list(map(lambda x: Fornecedor(novoNome, novoCnpj, novoTelefone, novaCategoria) if (x.nome != nomeAlterar) else(x), x))
+                x = list(map(lambda x: Fornecedor(novoNome, novoCnpj, novoTelefone, novaCategoria) if (x.nome == nomeAlterar) else(x), x))
                 print('========')
             else:
                 print('O CNPJ já existe')
@@ -308,66 +308,63 @@ class ControllerFornecedor:
                     f'Nome: {i.nome}\n'
                     f'Telefone: {i.telefone}\n'
                     f'CNPJ: {i.cnpj}\n')
-
 #a = ControllerFornecedor()
-#a.cadastarFornecedor('camila','12345678907474','21000003030','Equipamentos') - Ok
+#a.cadastarFornecedor('camiladel','12345678907001','21000009991','Equipamentos')
 #a.alterarFornecedor('camila','camila', '12345678901234', '21000001111', 'equipamentosNovo')
-#Mesmo erro de cima a.removerFornecedor('camila')
+#a.removerFornecedor('camiladel')
 #a.mostrarFornecedor()
 
+## DAQUI PRA CIMA ESTA OK ##
 class ControllerCliente:
-    def cadastarCliente(self, nome, cpf, telefone, email, endereco):
+    def cadastarCliente(self, nome, telefone, cpf, email, endereco):
         x = DaoPessoa.ler()
-        print(x)
-
-        listaCpf = list(filter(lambda x: x.cpf == cpf, x))     
-
-        print(listaCpf)
+        
+        listaCpf = list(filter(lambda x: x.cpf == cpf, x))
         if len(listaCpf) > 0:
             print('O Cpf já existe.')
         else:
             if len(cpf) == 11 and len(telefone) <= 11 and len(telefone) >= 10:
-                DaoPessoa.salvar(Pessoa(nome, cpf, telefone, email, endereco))
+                DaoPessoa.salvar(Pessoa(nome, telefone, cpf, email, endereco))
                 print('Cliente cadastrado com sucesso.')
             else:
                 print('Digite um CPF ou telefone válido.')
 
-    def removerCliente(self, nome):
+    def alterarCliente(self, nomeAlterar, novoNome, novoTelefone, novoCpf, novoEmail, novoEndereco):
         x = DaoPessoa.ler()
 
-        cat = list(filter(lambda x: x.nome == nome, x))
-        if len(cat) <= 0:
-            for i in range(len(x)):
-                if x[i].nome == nome:
-                    del x[i]
-                    break
-
-            with open('clientes.txt', 'w') as arq:
-                for i in x:
-                    arq.writelines(i.nome + "|" + i.telefone + "|" + i.cpf + "|" + i.email + "|" + i.endereco)
-                    arq.writelines('\n')                
-            print("Cliente removido com sucesso.")
-
-    def alterarCliente(self, nomeAlterar, nomeAlterada):
-        x = DaoPessoa.ler()
-        cat = list(filter(lambda x: x.categoria == nomeAlterar, x))
-
-        if len(cat) > 0:
-            cat1 = list(filter(lambda x: x.nome == nomeAlterada, x))
-            if len(cat1) == 0:
-                x = list(map(lambda x: Pessoa(nomeAlterada) if (x.nome == nomeAlterar) else(x),x ))
-                print("Cliente foi alterado com sucesso.")
-
-            else:
-                print("Cliente para qual deseja alterar já existe.")
+        est = list(filter(lambda x: x.nome == nomeAlterar, x))
+        print (est)
+        if len(est) > 0:
+                x = list(map(lambda x: Pessoa(novoNome, novoTelefone, novoCpf, novoEmail, novoEndereco) if
+                (x.nome == nomeAlterar) else (x), x))
         else:
             print("Cliente que deseja alterar não existe.")
+            return None
 
         with open ('clientes.txt', 'w') as arq:
             for i in x:
                 arq.writelines(i.nome + "|" + i.telefone + "|" + i.cpf + "|" + i.email + "|" + i.endereco)
                 arq.writelines('\n')
             print('Cliente alterado com sucesso.')
+
+    def removerCliente(self, nome):
+        x = DaoPessoa.ler()
+
+        est = list(filter(lambda x: x.nome == nome, x))
+        if len(est) > 0:
+            for i in range(len(x)):
+                if x[i].nome == nome:
+                    del x[i]
+                    break
+        else:
+            print('O cliente que deseja remover não existe')
+            return None        
+
+        with open('clientes.txt', 'w') as arq:
+            for i in x:
+                arq.writelines(i.nome + "|" + i.telefone + "|" + i.cpf + "|" + i.email + "|" + i.endereco)
+                arq.writelines('\n')                
+            print("Cliente removido com sucesso.")
 
     def mostrarCliente(self):
         clientes = DaoPessoa.ler()
@@ -379,15 +376,23 @@ class ControllerCliente:
         for i in clientes:
                 print(f'Nome: {i.nome}\n'
                     f'Telefone: {i.telefone}\n'
-                    f'Endereço: {i.endereco}\n'
+                    f'CPF: {i.cpf}\n'                    
                     f'Email: {i.email}\n'
-                    f'CPF: {i.cpf}\n')
-#a = ControllerCliente()
-#a.cadastarCliente('Cliente02','33322211102','21999990002','email02@email.com','endereco02')
-#a.removerCliente('Cliente01')
+                    f'Endereço: {i.endereco}\n')
+a = ControllerCliente()
+#a.cadastarCliente('ClienteDel','21000000005','33322211105','email05@email.com','endereco05')
+# a.cadastarCliente('Cliente06','21000000006','33322211106','email06@email.com','endereco06')
+# a.cadastarCliente('Cliente07','21000000007','33322211107','email07@email.com','endereco07')
+# a.cadastarCliente('Cliente08','21000000008','33322211108','email08@email.com','endereco08')
+# a.cadastarCliente('Cliente09','21000000009','33322211109','email09@email.com','endereco09')
+# a.cadastarCliente('Cliente10','21000000010','33322211110','email10@email.com','endereco10')
+#a.alterarCliente('Cliente02','nomeAleterado','21000000100','33322211100','email100@email.com','endereco100')
+#a.removerCliente('')
+#a.mostrarCliente() - Ok
+#Não esta encontrando o cliente (.nome)
 
 class ControllerFuncionario:
-    def cadastarFuncionario(self, clt, nome, cpf, telefone, endereco):
+    def cadastarFuncionario(self, clt, nome, telefone, cpf, email, endereco):
         x = DaoFuncionario.ler()
 
         listaCpf = list(filter(lambda x: x.cpf == cpf, x))
@@ -398,12 +403,12 @@ class ControllerFuncionario:
         elif len(listaClt) > 0:
             print('O clt já existe.')
         else:
-            if len(cpf) == 14 and len(telefone) <= 11 and len(telefone) >= 10:
-                DaoFuncionario.salvar(Funcionario(clt, nome, cpf, telefone, endereco))
+            if len(clt) == 14 and len(telefone) <= 11 and len(telefone) >= 10:
+                DaoFuncionario.salvar(Funcionario(clt, nome, telefone, cpf, email, endereco))
                 print('Funcionario cadastrado com sucesso.')
             else:
-                print('Digite um CPF ou Telefone válido.')
-            
+                print('Digite um CNPJ ou Telefone válido.')
+
     def alterarFuncionario(self, nomeAlterar, novoClt, novoNome, novoTelefone, novoEmail, novoEndereco):
         x = DaoFuncionario.ler()
 
@@ -451,4 +456,10 @@ class ControllerFuncionario:
                     f'CPF: {i.cpf}\n'
                     f'Telefone: {i.telefone}\n'
                     f'Endereço: {i.endereco}\n')
-                    
+
+a = ControllerFuncionario()
+# a.cadastarFuncionario('12345678900001', 'Func01', '21000009991', '12345678901', 'f01@g.com', 'end01')
+# a.cadastarFuncionario('12345678900002', 'Func02', '21000009992', '12345678902', 'f02@g.com', 'end02')
+# a.cadastarFuncionario('12345678900003', 'Func03', '21000009993', '12345678903', 'f03@g.com', 'end03')
+# a.cadastarFuncionario('12345678900004', 'Func04', '21000009994', '12345678904', 'f04@g.com', 'end04')
+a.alterarFuncionario('Func01','12345678900005', 'Func05', '21000009995', '12345678905', 'f05@g.com', 'end05')
