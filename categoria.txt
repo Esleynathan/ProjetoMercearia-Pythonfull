@@ -1,5 +1,4 @@
 novaFrutas
-Verduras
 Legumes
 Graos
-Roupa
+novaRoupa
