@@ -24,7 +24,7 @@ class DaoCategoria:
 class DaoVenda:
     @classmethod
     def salvar(cls, venda: Venda):
-        with open('venda.txt', 'a') as arq:
+        with open('vendas.txt', 'a') as arq:
             arq.writelines(venda.itensVendido.nome + "|" + venda.itensVendido.preco + "|" +
                         venda.itensVendido.categoria + "|" + venda.vendedor + "|" +
                         venda.comprador + "|" + str(venda.quantidadeVendida) + "|" + venda.data)
@@ -32,7 +32,7 @@ class DaoVenda:
 
     @classmethod
     def ler(cls):
-        with open('venda.txt', 'r') as arq:
+        with open('vendas.txt', 'r') as arq:
            cls.venda = arq.readlines()
 
         cls.venda = list(map(lambda x: x.replace ('\n', ''), cls.venda))        
