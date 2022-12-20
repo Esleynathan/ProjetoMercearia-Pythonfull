@@ -1,4 +1,1 @@
-Camisa|5|novaRoupa|5
-Bermuda|5|novaRoupa|5
-bone|5|novaRoupa|5
-legumes01|5|Sem categoria|5
+Banana|30|verduras|30

@@ -1,4 +1,6 @@
-novaFrutas
-Legumes
-Graos
-novaRoupa
+novafrutas
+roupas
+verduras
+carnes
+graos
+flores

@@ -84,13 +84,12 @@ class ControllerCategoria:
             print("Categoria vazia.")
             return 0
         print(f'========== Categorias ==========')
-        for i in categorias:            
-                
-                print(f'Categoaria: {i.categoria}')
-a = ControllerCategoria()
+        for i in categorias:        
+            print(f'Categoaria: {i.categoria}')
+# a = ControllerCategoria()
 # a.cadastraCategoria('Verduras')
 # a.removerCategoria('Roupa')
-a.alterarCategoria('Roupa','novaRoupa')
+# a.alterarCategoria('Roupa','novaRoupa')
 #a.mostrarCategoria()
 
 class ControllerEstoque:
